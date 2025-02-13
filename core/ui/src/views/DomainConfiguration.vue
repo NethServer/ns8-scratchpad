@@ -82,91 +82,88 @@
                 </div>
               </template>
               <template #content>
-                <div class="key-value-setting">
-                  <div class="row top-margin">
-                    <span class="label right-margin">{{
-                      $t("domains.schema")
-                    }}</span>
-                    <span class="value">{{ domain.schema }}</span>
-                  </div>
-                  <div class="row top-margin">
-                    <span class="label right-margin">{{
-                      $t("domains.base_dn")
-                    }}</span>
-                    <span class="value break-all">{{ domain.base_dn }}</span>
-                  </div>
-                  <div class="row top-margin">
-                    <span class="label right-margin">{{
-                      $t("domains.bind_dn")
-                    }}</span>
-                    <span class="value break-all">{{ domain.bind_dn }}</span>
-                  </div>
-
-                  <div class="row top-margin">
-                    <span class="label right-margin">{{
-                      $t("domains.bind_password")
-                    }}</span>
-                    <cv-link @click="toggleBindPassword">
-                      {{
-                        isShownBindPassword
-                          ? $t("common.hide")
-                          : $t("common.show")
-                      }}
-                    </cv-link>
-                    <NsCodeSnippet
-                      v-if="isShownBindPassword"
-                      :copyTooltip="$t('common.copy_to_clipboard')"
-                      :copy-feedback="$t('common.copied_to_clipboard')"
-                      :feedback-aria-label="$t('common.copied_to_clipboard')"
-                      :wrap-text="true"
-                      :moreText="$t('common.show_more')"
-                      :lessText="$t('common.show_less')"
-                      hideExpandButton
-                      class="password-snippet"
-                      >{{ domain.bind_password }}</NsCodeSnippet
-                    >
-                  </div>
-                  <div class="row top-margin">
-                    <span class="label right-margin">{{
-                      $t("domains.tls")
-                    }}</span>
-                    <span class="value">
-                      <NsTag
-                        v-if="domain.tls"
-                        kind="green"
-                        :label="$t('common.enabled')"
-                        size="sm"
-                        class="no-margin"
-                      ></NsTag>
-                      <NsTag
-                        v-else
-                        kind="high-contrast"
-                        :label="$t('common.disabled')"
-                        size="sm"
-                        class="no-margin"
-                      ></NsTag>
-                    </span>
-                  </div>
-                  <div class="row top-margin">
-                    <span class="label right-margin">{{
-                      $t("domains.tls_verify")
-                    }}</span>
-                    <span class="value">
-                      <NsTag
-                        v-if="domain.tls_verify"
-                        kind="green"
-                        :label="$t('common.enabled')"
-                        size="sm"
-                        class="no-margin"
-                      ></NsTag>
-                      <NsTag
-                        v-else
-                        kind="high-contrast"
-                        :label="$t('common.disabled')"
-                        size="sm"
-                        class="no-margin"
-                      ></NsTag>
-                    </span>
+                <div class="table-wrapper">
+                  <div class="table">
+                    <div class="tr">
+                      <div class="label td">
+                        {{ $t("domains.schema") }}
+                      </div>
+                      <div class="td">{{ domain.schema }}</div>
+                    </div>
+                    <div class="tr">
+                      <div class="label td">
+                        {{ $t("domains.base_dn") }}
+                      </div>
+                      <div class="td">{{ domain.base_dn }}</div>
+                    </div>
+                    <div class="tr">
+                      <div class="label td">
+                        {{ $t("domains.bind_dn") }}
+                      </div>
+                      <div class="td">{{ domain.bind_dn }}</div>
+                    </div>
+                    <div class="tr">
+                      <div class="label td">
+                        {{ $t("domains.bind_password") }}
+                      </div>
+                      <cv-link @click="toggleBindPassword">
+                        {{
+                          isShownBindPassword
+                            ? $t("common.hide")
+                            : $t("common.show")
+                        }}
+                      </cv-link>
+                      <NsCodeSnippet
+                        v-if="isShownBindPassword"
+                        :copyTooltip="$t('common.copy_to_clipboard')"
+                        :copy-feedback="$t('common.copied_to_clipboard')"
+                        :feedback-aria-label="$t('common.copied_to_clipboard')"
+                        :wrap-text="true"
+                        :moreText="$t('common.show_more')"
+                        :lessText="$t('common.show_less')"
+                        hideExpandButton
+                        class="password-snippet"
+                        >{{ domain.bind_password }}</NsCodeSnippet
+                      >
+                    </div>
+                    <div class="tr">
+                      <span class="label td">{{ $t("domains.tls") }}</span>
+                      <span class="td">
+                        <NsTag
+                          v-if="domain.tls"
+                          kind="green"
+                          :label="$t('common.enabled')"
+                          size="sm"
+                          class="no-margin"
+                        ></NsTag>
+                        <NsTag
+                          v-else
+                          kind="high-contrast"
+                          :label="$t('common.disabled')"
+                          size="sm"
+                          class="no-margin"
+                        ></NsTag>
+                      </span>
+                    </div>
+                    <div class="tr">
+                      <div class="label td">{{ $t("domains.tls_verify") }}</div>
+                      <div class="value">
+                        <NsTag
+                          v-if="domain.tls_verify"
+                          kind="green"
+                          :label="$t('common.enabled')"
+                          size="sm"
+                          class="no-margin"
+                        ></NsTag>
+                        <NsTag
+                          v-else
+                          kind="high-contrast"
+                          :label="$t('common.disabled')"
+                          size="sm"
+                          class="no-margin"
+                        ></NsTag>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </template>
@@ -1340,7 +1337,10 @@ export default {
 .right-margin {
   margin-right: 1rem;
 }
-.top-margin {
-  margin-top: 1rem;
+.label {
+  padding-right: 0.75rem;
+  font-weight: bold;
+  text-align: right;
+  padding-bottom: 0.5rem;
 }
 </style>
