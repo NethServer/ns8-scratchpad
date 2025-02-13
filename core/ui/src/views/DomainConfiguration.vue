@@ -600,6 +600,7 @@
       :isShown="isShownEditExternalDomainModal"
       :domain="domain"
       @hide="hideisShownEditExternalDomainModal"
+      @reload="reloadExternalDomain"
     />
     <!-- set provider label modal -->
     <NsModal
@@ -822,6 +823,10 @@ export default {
       setTimeout(() => {
         this.checkAndScrollToAnchor();
       }, 100);
+    },
+    reloadExternalDomain() {
+      this.isShownEditExternalDomainModal = false;
+      this.listUserDomains();
     },
     async listPasswordPolicy() {
       this.loading.ListPasswordPolicy = true;

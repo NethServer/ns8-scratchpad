@@ -215,7 +215,8 @@ export default {
       }
     },
     alterExternalDomainCompleted() {
-      this.$emit("hide");
+      this.loading.alterExternalDomain = false;
+      this.$emit("reload");
     },
   },
 };
